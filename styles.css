@@ -47,3 +47,16 @@
     right: 12px;
     cursor: pointer;
 }
+
+.delete-btn {
+    height: 30px;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+.delete-btn:hover {
+    color: #000;
+    background-color: #fff;
+}

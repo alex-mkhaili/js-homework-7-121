@@ -1,72 +1,3 @@
-// let postsWraper = document.getElementById("posts-wraper");
-// let overlayBlock = document.getElementById("overlay");
-// let overlayClose = document.getElementById("closeButton");
-
-
-// function ajax(url) {
-//     // https://jsonplaceholder.typicode.com/posts
-//     fetch(url, {
-//         method: "GET"
-//     })
-//     .then(function(response) {
-//         if (response.status !=200) {
-//             throw response.status
-//         }
-//         return response.json();
-//     }) 
-//     .then (function(responseData) {
-//         responseData.forEach(post => {
-//             PostRenderLogic(post);
-//         })
-    
-//         function PostRenderLogic (post) {
-//             let divWrapper = document.createElement("div");
-//             divWrapper.classList.add("post-block");
-//             divWrapper.setAttribute("data-id", post.id);
-    
-//             let h3 = document.createElement("h3");
-//             h3.innerText = post.id;
-    
-//             let h2 = document.createElement("h2");
-//             h2.innerText = post.title;
-    
-//             divWrapper.appendChild(h3);
-//             divWrapper.appendChild(h2);
-//             postsWraper.appendChild(divWrapper);
-    
-    
-//             divWrapper.addEventListener("click", function(event) {
-//                 overlayBlock.classList.add("active");
-//                 let id = event.target.getAttribute("data-id");
-//                 let post_url = `https://jsonplaceholder.typicode.com/posts/${id}`
-//                 ajax(post_url, );
-//             })
-    
-    
-//             overlayClose.addEventListener("click", () => {
-//                 overlayBlock.classList.remove("active");
-//             })
-//         }
-    
-//     })
-//     .catch(function(error) {
-//         let p = document.createElement("p");
-//         p.innerText = "Error";
-//         p.style.color = "red";
-//         document.getElementById("posts-wraper").appendChild(p);
-//     })
-// }
-// ajax("https://jsonplaceholder.typicode.com/posts");
-
-
-
-
-
-
-
-
-
-
 let postsWraper = document.getElementById("posts-wraper");
 let overlayBlock = document.getElementById("overlay");
 let ovelayText = document.getElementById("overlay-text")
@@ -96,6 +27,7 @@ function PostRenderLogic(post) {
   
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete Post";
+    deleteButton.classList.add("delete-btn");
     deleteButton.setAttribute("data-id", post.id);
   
     divWraper.appendChild(h3Post);
@@ -108,8 +40,7 @@ function PostRenderLogic(post) {
       let url = `https://jsonplaceholder.typicode.com/posts/${id}`;
       fetch(url, {
         method: "DELETE",
-      });
-      console.log(id);
+      }).then(() => divWraper.remove());
     });
   
     divWraper.addEventListener("click", function(event) {
